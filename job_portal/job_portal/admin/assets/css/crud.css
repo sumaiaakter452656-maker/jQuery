@@ -1,0 +1,278 @@
+/* Jobs Portal — CRUD pages (Categories, Jobs) stylesheet
+   Matches the admin dashboard theme. Only styles existing markup. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --accent: #655de6;
+  --accent2: #5148d8;
+  --ink: #1b2638;
+  --muted: #8490a1;
+  --line: #edf0f5;
+  --page: #f5f7fb;
+  --green: #15945b;
+  --red: #dc5353;
+  --shadow: 0 8px 26px rgba(23, 36, 58, .055);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+a { color: var(--accent); text-decoration: none; transition: .2s; }
+a:hover { color: var(--accent2); }
+
+/* ---------- List page wrapper ---------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 19px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.top-bar h3,
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+  color: #263449;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border: 0;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.btn:hover {
+  background: var(--accent2);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ---------- Table ---------- */
+.container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.container table th {
+  padding: 13px 18px;
+  background: #fbfcfe;
+  border-bottom: 1px solid var(--line);
+  color: #8994a3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.container table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f2f6;
+  color: #536074;
+  vertical-align: middle;
+}
+
+.container table tr:last-child td { border-bottom: 0; }
+.container table tr:hover td { background: #fafbff; }
+
+.container table td:first-child {
+  font-weight: 700;
+  color: #29374b;
+}
+
+/* Action links */
+.action { white-space: nowrap; }
+
+.action a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 4px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.action a.edit {
+  background: color-mix(in srgb, var(--accent) 10%, white);
+  color: var(--accent);
+}
+.action a.edit:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.action a.danger {
+  background: #ffebeb;
+  color: #cf4545;
+}
+.action a.danger:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+/* ---------- Form card (create / edit) ---------- */
+.card {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 28px 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.card form {
+  font-size: 12px;
+  font-weight: 700;
+  color: #596679;
+}
+
+/* Inputs already separated by <br> — hide the extra line breaks inside forms */
+.card form br { display: none; }
+
+.card input[type="text"],
+.card input[type="number"],
+.card input[type="date"],
+.card input[type="email"],
+.card select,
+.card textarea {
+  display: block;
+  width: 100%;
+  margin: 6px 0 14px;
+  padding: 11px 13px;
+  border: 1px solid #e5e9ef;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  outline: 0;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.card textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.card select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='%238490a1'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  padding-right: 34px;
+  cursor: pointer;
+}
+
+.card input::placeholder,
+.card textarea::placeholder { color: #a3adba; }
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.card input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  cursor: pointer;
+  transition: .2s;
+}
+.card input[type="submit"]:hover {
+  background: var(--accent2);
+  transform: translateY(-1px);
+}
+
+/* Back link under the form */
+.card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: #536074;
+  font-size: 13px;
+  font-weight: 600;
+}
+.card > a::before { content: "\2190"; }
+.card > a:hover {
+  background: #f6f7fa;
+  color: var(--accent);
+}
+
+/* Success message */
+.message {
+  margin-bottom: 18px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #e7f8ef;
+  border: 1px solid #c9eedb;
+  color: #168653;
+  font-weight: 700;
+}
+.message::before { content: "\2714  "; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767.98px) {
+  body { padding: 20px 12px; }
+  .card { padding: 22px 18px; }
+  .top-bar { padding: 16px; }
+  .container { overflow-x: auto; }
+  .container table { min-width: 640px; }
+}
