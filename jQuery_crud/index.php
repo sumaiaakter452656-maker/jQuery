@@ -8,31 +8,53 @@
 </head>
 
 <body>
+    <h3>student list</h3>
+    <div id="container"></div>
+    <h3>student entry</h3>
     <form action="">
     <input type="text" id="name" placeholder="Enter Name"><br>
     <textarea id="address" placeholder="Enter Address"></textarea><br>
     <button type="submit" class="btn_submit">Submit</button>
 
     </form>
-    <button id="btn1">Click</button>
+    <!-- <button id="btn1">Click</button> -->
     <script>
 
-        $(document).ready(function(){
-            // $("#btn1").click(function(){
-            //     $.get("data.php",{name:"farzana"},
-            //      function(data, statuses){
-            //         alert(data);
-            //     })
-            // })
+        $(document).ready(function(){  
+
+             function getstudents(){
+                 $.get("students.php", function(data,status){
+                    $("#container").html(data)
+                    $(".btnDel").click(function(){
+                    let sid = this.id;
+                    alert(sid);
+                    $.get("delete.php",{id:sid}, function(data,status){
+                        alert(data);
+                        //getstudents();
+                    })
+                })
+                })
+               }
+                 getstudents ();
+
             $(".btn_submit").click(function(){
               let name = $("#name").val();
               let address = $("#address").val();
                 // alert(name);
-                // alert(address);
-              $.get("insert.php",{name:name,add:address},
+              
+           
+              $.get("insert.php",{
+                name:name,
+                add:address},
                function(data, status){
                   alert(data);
+                  $("#name").val();
+                  $("#address").val();
+                  getstudents();
               });
+            });
+            $(".btnDel").click(function(){
+            $(".btnDel").attr('id').val();
             });
         });
     </script>
